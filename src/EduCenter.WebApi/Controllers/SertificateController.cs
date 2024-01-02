@@ -15,6 +15,7 @@ namespace EduCenter.WebApi.Controllers
         {
             _service = service;
         }
+        
         [HttpGet]
         public IActionResult GetAll()
          => Ok(_service.GetAll());
@@ -22,6 +23,11 @@ namespace EduCenter.WebApi.Controllers
         [HttpPost]
         public IActionResult Create(CreateSertificateDto dto)
          => Ok(_service.Add(dto));
-        
+
+        [HttpGet("getby")]
+        public  IActionResult GetBy(string CandidateNo, string CertificateNo)
+        {
+           return Ok( _service.GetById(CandidateNo, CertificateNo));
+        }
     }
 }

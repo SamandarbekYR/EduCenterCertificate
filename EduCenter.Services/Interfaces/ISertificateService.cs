@@ -7,5 +7,6 @@ namespace EduCenter.Services.Interfaces
     {
         int Add(CreateSertificateDto certificate);
         IEnumerable<Sertifikate> GetAll();
+        Sertifikate? GetById(string CandidateNo, string CertificateNo);
     }
 }
