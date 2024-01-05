@@ -17,6 +17,7 @@ builder.Services.AddAutoMapper(typeof(CertificateProfile));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddHttpContextAccessor();
+builder.ConfigureCORSPolicy();
 builder.ConfigureDataAccess();
 builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
 builder.Services.AddTransient<ISertificateService, SertificateService>();
