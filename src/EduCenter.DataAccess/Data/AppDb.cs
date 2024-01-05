@@ -13,6 +13,8 @@ namespace EduCenter.DataAccess.Data
         public DbSet<Sertifikate> Srtifikates { get; set; }
         public AppDb(DbContextOptions<AppDb> options)
             : base(options)
-        { }
+        {
+            Database.EnsureCreated();
+        }
     }
 }
