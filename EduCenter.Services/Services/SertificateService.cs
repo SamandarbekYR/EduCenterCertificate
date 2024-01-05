@@ -17,13 +17,37 @@ namespace EduCenter.Services.Services
         }
         public int Add(CreateSertificateDto certificate)
         {
-            Sertifikate sertifikate = _mapper.Map<Sertifikate>(certificate);
+            try
+            {
+                Sertifikate sertifikate = _mapper.Map<Sertifikate>(certificate);
 
-            _repos.Sertificate.Add(sertifikate);
-            int a = _repos.SaveChanges();
+                _repos.Sertificate.Add(sertifikate);
+                int a = _repos.SaveChanges();
 
-            return a;
+                return a;
+            }
+            catch
+            {
+                return 0;
+            }
         }
+
+        public int Delete(Guid id)
+        {
+            try
+            {
+                var res = _repos.Sertificate.GetById(id);
+                _repos.Sertificate.Delete(res, id);
+
+                int a = 0;
+                a = _repos.SaveChanges();
+
+                return a;
+            }
+
+            catch { return 0; }
+        }
+
         public IEnumerable<Sertifikate> GetAll() => _repos.Sertificate.GetAll();
 
         public Sertifikate? GetById(string CandidateNo, string CertificateNo)
@@ -35,7 +59,7 @@ namespace EduCenter.Services.Services
             {
                 return sertifikate.FirstOrDefault();
             }
-            
+
             return null;
         }
     }

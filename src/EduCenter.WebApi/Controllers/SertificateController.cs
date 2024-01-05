@@ -29,5 +29,10 @@ namespace EduCenter.WebApi.Controllers
         {
            return Ok( _service.GetById(CandidateNo, CertificateNo));
         }
+        [HttpDelete]
+        public IActionResult Delete(Guid id)
+        {
+           return Ok(_service.Delete(id));
+        }
     }
 }
