@@ -21,6 +21,8 @@ builder.ConfigureCORSPolicy();
 builder.ConfigureDataAccess();
 builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
 builder.Services.AddTransient<ISertificateService, SertificateService>();
+builder.Services.AddScoped<IUserService, UserService>();
+
 //builder.Services.AddTransient<IMapper, Mapper>();
 var app = builder.Build();
 
