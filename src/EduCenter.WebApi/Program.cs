@@ -1,8 +1,10 @@
 using AutoMapper;
 using EduCenter.DataAccess.Repositories;
 using EduCenter.Services.Interfaces;
+using EduCenter.Services.Interfaces.Auth;
 using EduCenter.Services.Mapper;
 using EduCenter.Services.Services;
+using EduCenter.Services.Services.Auth;
 using EduCenter.WebApi.Configurations;
 using EduCenter.WebApi.Middlewares;
 
@@ -22,7 +24,8 @@ builder.ConfigureDataAccess();
 builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
 builder.Services.AddTransient<ISertificateService, SertificateService>();
 builder.Services.AddScoped<IUserService, UserService>();
-
+builder.Services.AddScoped<ITokenService,TokenService>();
+builder.Services.AddScoped<IAuthService,AuthService>();
 //builder.Services.AddTransient<IMapper, Mapper>();
 var app = builder.Build();
 
@@ -36,6 +39,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseMiddleware<CrosOriginAccessMiddleware>();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

@@ -4,5 +4,5 @@ namespace EduCenter.Services.Interfaces;
 
 public interface IUserService
 {
-    int Add(UserCreateDto certificate);
+    public int Add(UserCreateDto userdto);
 }

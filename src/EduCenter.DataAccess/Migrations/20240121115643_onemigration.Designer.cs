@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace EduCenter.DataAccess.Migrations
 {
     [DbContext(typeof(AppDb))]
-    [Migration("20240120204141_newMigration")]
-    partial class newMigration
+    [Migration("20240121115643_onemigration")]
+    partial class onemigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -116,6 +116,9 @@ namespace EduCenter.DataAccess.Migrations
                     b.Property<string>("Phone")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<int>("Role")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 

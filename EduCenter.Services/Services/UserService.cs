@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using EduCenter.Domain.Entities.Sertifikat;
 using EduCenter.Domain.Entities.User;
 using EduCenter.Services.Common.Security;
 using EduCenter.Services.DTOs;
 using EduCenter.Services.Interfaces;
+using EduCenter.Services.Interfaces.Auth;
 
 namespace EduCenter.Services.Services;
 
@@ -11,12 +11,16 @@ public class UserService : IUserService
 {
     private IUnitOfWork _repos;
     private IMapper _mapper;
+    private readonly ITokenService _tokenService;
 
-    public UserService(IUnitOfWork unitOf, IMapper mapper)
+    public UserService(IUnitOfWork unitOf, IMapper mapper,
+        ITokenService tokenService)
     {
         _repos = unitOf;
         _mapper = mapper;
+        _tokenService = tokenService;
     }
+
 
     public int Add(UserCreateDto userdto)
     {

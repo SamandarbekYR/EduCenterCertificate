@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace EduCenter.DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class newMigration : Migration
+    public partial class onemigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -19,7 +19,8 @@ namespace EduCenter.DataAccess.Migrations
                     Name = table.Column<string>(type: "text", nullable: false),
                     Phone = table.Column<string>(type: "text", nullable: false),
                     PasswordHash = table.Column<string>(type: "text", nullable: false),
-                    PaswordSalt = table.Column<string>(type: "text", nullable: false)
+                    PaswordSalt = table.Column<string>(type: "text", nullable: false),
+                    Role = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {

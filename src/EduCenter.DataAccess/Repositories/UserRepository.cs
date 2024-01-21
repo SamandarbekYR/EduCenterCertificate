@@ -11,6 +11,14 @@ public class UserRepository : Repository<User>, IUser
 {
     public UserRepository(AppDb app) : base(app)
     { }
+
+    public User GetByPhone(string phone)
+    {
+        var result = _dbSet.FirstOrDefault(x => x.Phone == phone)!;
+
+        return result;
+    }
+
     public List<User?> Where(Expression<Func<User, bool>> expression)
     {
         try
