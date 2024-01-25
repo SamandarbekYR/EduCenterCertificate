@@ -2,14 +2,13 @@
 
 public class PasswordHasher
 {
-    public static (string Hash, string Salt) Hash(string password)
+    public static string  Hash(string password)
     {
-        string salt = Guid.NewGuid().ToString();
-        string hash = BCrypt.Net.BCrypt.HashPassword(password + salt);
-        return (Hash: hash, Salt: salt);
+        string hash = BCrypt.Net.BCrypt.HashPassword(password);
+        return hash;
     }
-    public static bool Verify(string password, string hash, string salt)
+    public static bool Verify(string password, string hash)
     {
-        return BCrypt.Net.BCrypt.Verify(password + salt, hash);
+        return BCrypt.Net.BCrypt.Verify(password, hash);
     }
 }

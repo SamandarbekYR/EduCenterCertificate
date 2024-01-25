@@ -31,7 +31,7 @@ namespace EduCenter.Services.Services.Auth
             }
             else
             {
-                if(PasswordHasher.Verify(dto.Password,user.PasswordHash, user.PaswordSalt))
+                if(PasswordHasher.Verify(dto.Password,user.PasswordHash))
                 {
                     string token = _tokenService.GeneratedToken(user);
                     return (Result: true, Token: token);

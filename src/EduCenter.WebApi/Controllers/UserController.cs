@@ -1,4 +1,5 @@
-﻿using EduCenter.Services.DTOs;
+﻿using EduCenter.Services.Common.Validators;
+using EduCenter.Services.DTOs;
 using EduCenter.Services.Interfaces;
 using EduCenter.Services.Interfaces.Auth;
 using Microsoft.AspNetCore.Authorization;
@@ -23,11 +24,27 @@ namespace EduCenter.WebApi.Controllers
         // [Authorize(Roles = "Admin")]
         [AllowAnonymous]
         public IActionResult CreateUser(UserCreateDto dto)
-         => Ok(_service.Add(dto));
+        {
+            var res = PhoneValidator.IsValid(dto.Phone);
+            if (res == false)
+            {
+                return BadRequest("Phone number  is valid!");
+            }
+
+            return Ok(_service.Add(dto));
+        }
 
         [HttpPost("login")]
         [AllowAnonymous]
-        public IActionResult Login(LoginDto dto)
-        => Ok(_authService.LoginAsync(dto));
+        public async Task<IActionResult> LoginAsync([FromBody] LoginDto dto)
+        {
+            var res = PhoneValidator.IsValid(dto.Phone);
+            if (res == false)
+                return BadRequest("Phone number is invalid!");
+
+            var Result = await _authService.LoginAsync(dto);
+
+            return Ok(new { Result.Result, Result.Token });
+        }
     }
 }

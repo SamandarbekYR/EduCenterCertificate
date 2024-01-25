@@ -30,8 +30,7 @@ public class UserService : IUserService
             User user = new User();
             user.Name = userdto.Name;
             user.Phone = userdto.Phone;
-            user.PaswordSalt = PasswordHasher.Hash(userdto.Password).Salt;
-            user.PasswordHash = PasswordHasher.Hash(userdto.Password).Hash;
+            user.PasswordHash = PasswordHasher.Hash(userdto.Password);
 
             _repos.User.Add(user);
             int a = _repos.SaveChanges();
